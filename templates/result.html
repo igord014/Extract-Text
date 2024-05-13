@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Результат извлечения текста</title>
+</head>
+<body>
+<!--<div>-->
+<!--    <h1>Результат извлечения текста</h1>-->
+<!--    <p>преобразуй этот текст в код <br>{{ text }}</p><br>-->
+
+<!--</div>-->
+
+<!--<div class="border border-blue-500 p-4">-->
+<!--       <span id="textToResult" class="blue-cell max-w-[100px] truncate">{{ text }}</span><br><br>-->
+<!--       <button type="button" class="mx-1 fill-grey-AD hover:fill-orange-33" onclick="copyText()">Copy</button>-->
+<!--</div><br><br>-->
+<!--<script>-->
+<!--    function copyText() {-->
+<!--        // Получаем текст для копирования-->
+<!--        var textToResult = document.getElementById("textToResult").innerText;-->
+
+<!--        // Создаем временный элемент textarea для копирования текста-->
+<!--        var textarea = document.createElement("textarea");-->
+<!--        textarea.value = textToResult;-->
+<!--        document.body.appendChild(textarea);-->
+
+<!--        // Выделяем текст в textarea и копируем его в буфер обмена-->
+<!--        textarea.select();-->
+<!--        document.execCommand("copy");-->
+
+<!--        // Удаляем временный элемент textarea-->
+<!--        document.body.removeChild(textarea);-->
+
+<!--        // Подсветка кнопки копирования для обратной связи-->
+<!--        var copyButton = event.currentTarget;-->
+<!--        copyButton.style.backgroundColor = "green"; // Зеленый цвет для обратной связи-->
+<!--        setTimeout(function() {-->
+<!--            copyButton.style.backgroundColor = ""; // Убираем цвет через 5 секунду-->
+<!--        }, 3000);-->
+<!--    }-->
+<!--</script>-->
+<div class="border border-blue-500 p-4">
+    <span id="textToResult" class="blue-cell max-w-[100px] truncate">преобразуй этот текст в код <br>{{ text }}</span><br><br>
+    <button type="button" class="mx-1 fill-grey-AD hover:fill-orange-33" onclick="copyText()">Copy</button>
+</div>
+
+<script>
+    function copyText() {
+        // Получаем текст из элемента span
+        var textToCopy = document.getElementById('textToResult').innerText;
+
+        // Создаем временный элемент textarea для копирования текста
+        var tempInput = document.createElement("textarea");
+
+        // Устанавливаем текст в textarea и скрываем его
+        tempInput.value = textToCopy;
+        tempInput.style = "position: absolute; left: -9999px; top: -9999px;";
+        document.body.appendChild(tempInput);
+
+        // Выделяем текст в textarea и копируем его
+        tempInput.select();
+        document.execCommand("copy");
+
+        // Удаляем временный элемент textarea
+        document.body.removeChild(tempInput);
+
+        // Выводим уведомление об успешном копировании
+        alert("Текст скопирован: " + textToCopy);
+    }
+</script>
+<!--<a href="{{url_for('index')}}">Link Main page <br> first option</a><br>-->
+
+<!--<br>-->
+<!--<a href="/">Link Main page <br> second option</a><br>-->
+<br>
+<!--вернуться назад то есть сделат "back"-->
+<!--<button onclick="window.location.href='/'">Go back to <br> Index Page</button>-->
+<br>
+<br>
+<!--открыть эту же страницу но в новый вкладке-->
+<button onclick="window.open('/', '_blank')">Go to Index <br> new tab</button>
+<br>
+<br>
+<br>
+<button onclick="window.open('https://chat.openai.com/', '_blank')">Go to Chat OpenAI <br> new tab</button>
+<br>
+<br>
+<!--<a href="#" onclick="window.open('https://chat.openai.com/', '_blank'); return false;">Открыть ссылку <br> New-->
+<!--    tab</a><br><br>-->
+
+<!--<div class="border border-blue-500 p-4">-->
+<!--    <span id="textToCopy" class="blue-cell max-w-[100px] truncate">преобразуй этот текст в код</span>-->
+<!--    <button type="button" class="mx-1 fill-grey-AD hover:fill-orange-33" onclick="copyText()">Copy</button>-->
+<!--</div>-->
+
+
+<!--<script>-->
+<!--    function copyText() {-->
+<!--        // Получаем текст для копирования-->
+<!--        var textToCopy = document.getElementById("textToCopy").innerText;-->
+
+<!--        // Создаем временный элемент textarea для копирования текста-->
+<!--        var textarea = document.createElement("textarea");-->
+<!--        textarea.value = textToCopy;-->
+<!--        document.body.appendChild(textarea);-->
+
+<!--        // Выделяем текст в textarea и копируем его в буфер обмена-->
+<!--        textarea.select();-->
+<!--        document.execCommand("copy");-->
+
+<!--        // Удаляем временный элемент textarea-->
+<!--        document.body.removeChild(textarea);-->
+
+<!--        // Подсветка кнопки копирования для обратной связи-->
+<!--        var copyButton = event.currentTarget;-->
+<!--        copyButton.style.backgroundColor = "yellow"; // Зеленый цвет для обратной связи-->
+<!--        setTimeout(function() {-->
+<!--            copyButton.style.backgroundColor = ""; // Убираем цвет через 5 секунду-->
+<!--        }, 3000);-->
+<!--    }-->
+<!--</script>-->
+</body>
+</html>
