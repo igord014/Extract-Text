@@ -14,7 +14,7 @@ def index():
     return render_template('index.html')
 
 # Это декоратор маршрута, который указывает, что данный обработчик будет обрабатывать запросы по адресу "/extract_text" с методом POST.
-# @app.route('/extract_text', methods=['POST'])
+
 @app.route('/a', methods=['POST'])
 
 #Это функция, которая будет вызываться при запросе по указанному маршрутуy.
