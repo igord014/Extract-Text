@@ -4,48 +4,28 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Результат извлечения текста</title>
+    <style>
+        .custom-alert {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: #f3f4f6;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            display: none;
+        }
+    </style>
 </head>
 <body>
-<!--<div>-->
-<!--    <h1>Результат извлечения текста</h1>-->
-<!--    <p>преобразуй этот текст в код <br>{{ text }}</p><br>-->
 
-<!--</div>-->
-
-<!--<div class="border border-blue-500 p-4">-->
-<!--       <span id="textToResult" class="blue-cell max-w-[100px] truncate">{{ text }}</span><br><br>-->
-<!--       <button type="button" class="mx-1 fill-grey-AD hover:fill-orange-33" onclick="copyText()">Copy</button>-->
-<!--</div><br><br>-->
-<!--<script>-->
-<!--    function copyText() {-->
-<!--        // Получаем текст для копирования-->
-<!--        var textToResult = document.getElementById("textToResult").innerText;-->
-
-<!--        // Создаем временный элемент textarea для копирования текста-->
-<!--        var textarea = document.createElement("textarea");-->
-<!--        textarea.value = textToResult;-->
-<!--        document.body.appendChild(textarea);-->
-
-<!--        // Выделяем текст в textarea и копируем его в буфер обмена-->
-<!--        textarea.select();-->
-<!--        document.execCommand("copy");-->
-
-<!--        // Удаляем временный элемент textarea-->
-<!--        document.body.removeChild(textarea);-->
-
-<!--        // Подсветка кнопки копирования для обратной связи-->
-<!--        var copyButton = event.currentTarget;-->
-<!--        copyButton.style.backgroundColor = "green"; // Зеленый цвет для обратной связи-->
-<!--        setTimeout(function() {-->
-<!--            copyButton.style.backgroundColor = ""; // Убираем цвет через 5 секунду-->
-<!--        }, 3000);-->
-<!--    }-->
-<!--</script>-->
 <div class="border border-blue-500 p-4">
     <span id="textToResult" class="blue-cell max-w-[100px] truncate">преобразуй этот текст в код <br>{{ text }}</span><br><br>
     <button type="button" class="mx-1 fill-grey-AD hover:fill-orange-33" onclick="copyText()">Copy</button>
     <button type="button" class="mx-1 fill-grey-AD hover:fill-orange-33" onclick="closePage()">Close Page</button>
 </div>
+<div id="customAlert" class="custom-alert">Text copied to clipboard</div>
 
 <script>
     function copyText() {
@@ -66,20 +46,22 @@
 
         // Удаляем временный элемент textarea
         document.body.removeChild(tempInput);
-        // Выводим уведомление об успешном копировании
-        alert("Текст скопирован");
-        setTimeout(closeAlert, 3000);
 
+        // Показываем уведомление об успешном копировании
+        var customAlert = document.getElementById('customAlert');
+        customAlert.style.display = 'block';
 
-
-}
-</script>
-<script>
-  function closePage() {
-       window.close();
+        // Закрываем алерт через 3 секунды
+        setTimeout(function(){
+            customAlert.style.display = 'none';
+        }, 3000);
     }
 </script>
-
+<script>
+    function closePage() {
+        window.close();
+    }
+</script>
 
 </body>
 </html>
