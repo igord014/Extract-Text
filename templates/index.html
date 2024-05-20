@@ -23,7 +23,7 @@ body {
 h1 {
     font-size: 2em;
     margin-bottom: 20px;
-    color: #4CAF50;
+    color: black;
 }
 
 form {
@@ -38,10 +38,12 @@ form {
 
 input[type="file"] {
     margin-bottom: 15px;
+
 }
 
+
 input[type="submit"] {
-    background-color: #4CAF50;
+    background-color: darkgray;
     color: white;
     padding: 10px 20px;
     border: none;
@@ -51,36 +53,53 @@ input[type="submit"] {
 }
 
 input[type="submit"]:hover {
-    background-color: #45a049;
+    background-color: green;
 }
+        .button {
+            background-color: #f0f0f0;
+            border: 1px solid #007BFF;
+            color: #007BFF;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            margin: 5px;
+            transition: background-color 0.3s, color 0.3s;
+        }
 
-button {
-    background-color: #008CBA;
-    color: white;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-    margin-top: 20px;
-}
+        .button:hover {
+            background-color: #007BFF;
+            color: #fff;
+        }
 
-button:hover {
-    background-color: #007B9A;
-}
+/*button {*/
+/*    background-color: #008CBA;*/
+/*    color: white;*/
+/*    padding: 10px 20px;*/
+/*    border: none;*/
+/*    border-radius: 4px;*/
+/*    cursor: pointer;*/
+/*    transition: background-color 0.3s ease;*/
+/*    margin-top: 20px;*/
+/*}*/
+
+/*button:hover {*/
+/*    background-color: green;*/
+/*}*/
 
     </style>
 </head>
 <body>
 <h1>Извлечение текста из изображения</h1>
+
 <form action="/a" method="post" enctype="multipart/form-data" target="_blank">
 
     <input type="file" name="image" accept="image/*">
     <input type="submit" value="Извлечь текст">
+    <button onclick="window.location.href='http://127.0.0.1:5000/a'" class="button">Back to result</button>
 
 </form><br><br>
 
 <!--это чтоб открыть новую вкладку поэтому адресу ('/')-->
-<!--<button onclick="window.open('/', '_blank')">Go to new tab <br> Same Page</button>-->
+
 </body>
 </html>

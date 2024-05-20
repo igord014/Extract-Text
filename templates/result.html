@@ -9,8 +9,8 @@
             font-family: Arial, sans-serif;
             background-color: #f0f0f0;
             display: flex;
-            justify-content: center;
-            align-items: center;
+            justify-content: left;
+            align-items: flex-start;
             height: 100vh;
             margin: 0;
         }
@@ -20,26 +20,30 @@
             padding: 20px;
             border-radius: 8px;
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-            text-align: center;
+            text-align: left;
+            max-width: 100%;
+            box-sizing: border-box;
+            margin: 20px 0 0 20px;
         }
 
         .custom-alert {
             position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
+            top: 20px;
+            right: 20px;
             background-color: #00ffff;
             padding: 20px;
             border-radius: 8px;
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
             display: none;
             font-size: 1em;
+            transform: none;
         }
 
         .blue-cell {
             color: #007BFF;
             word-wrap: break-word;
-            max-width: 300px;
+            max-width: 100%;
+            white-space: pre-wrap;
         }
 
         .button {
@@ -58,47 +62,48 @@
             color: #fff;
         }
 
-        .truncate {
-            overflow: hidden;
-            text-overflow: ellipsis;
-            white-space: nowrap;
+        .language-selector {
+            display: flex;
+            margin-bottom: 10px;
+        }
+
+        .language-button {
+            margin-right: 10px;
         }
     </style>
 </head>
 <body>
 
 <div class="container">
-    <span id="textToResult" class="blue-cell truncate">преобразуй этот текст в код <br>{{ text }}</span><br><br>
+    <span id="textToResult" class="blue-cell">Convert this text to code <br>{{ text }}</span><br><br>
     <button type="button" class="button" onclick="copyText()">Copy</button>
     <button type="button" class="button" onclick="closePage()">Close Page</button>
+    <button onclick="window.location.href='http://127.0.0.1:5000/'" class="button">Back to extract text</button>
 </div>
 <div id="customAlert" class="custom-alert">Text copied to clipboard</div>
 
 <script>
+
+
     function copyText() {
-        // Получаем текст из элемента span
         var textToCopy = document.getElementById('textToResult').innerText;
 
-        // Создаем временный элемент textarea для копирования текста
         var tempInput = document.createElement("textarea");
-
-        // Устанавливаем текст в textarea и скрываем его
         tempInput.value = textToCopy;
         tempInput.style = "position: absolute; left: -9999px; top: -9999px;";
         document.body.appendChild(tempInput);
 
-        // Выделяем текст в textarea и копируем его
         tempInput.select();
         document.execCommand("copy");
 
-        // Удаляем временный элемент textarea
         document.body.removeChild(tempInput);
 
-        // Показываем уведомление об успешном копировании
+        var copyButton = event.currentTarget;
+        copyButton.style.backgroundColor = "yellow";
+
         var customAlert = document.getElementById('customAlert');
         customAlert.style.display = 'block';
 
-        // Закрываем алерт через 3 секунды
         setTimeout(function(){
             customAlert.style.display = 'none';
         }, 3000);
