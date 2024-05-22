@@ -74,32 +74,9 @@
 
 <form id="imageForm" action="/a" method="post" enctype="multipart/form-data" target="_blank">
     <input type="file" name="image" accept="image/*">
-    <label for="language">Выберите язык:</label><br>
-    <select id="language" name="language"><br>
-        <option value="en">Английский</option>
-        <option value="ru">Русский</option>
-
-    </select><br>
     <input type="submit" value="Извлечь текст">
 </form>
 
-<script>
-    document.getElementById('imageForm').addEventListener('submit', function(event) {
-        event.preventDefault();
-        const formData = new FormData(this);
-        fetch(this.action, {
-            method: 'POST',
-            body: formData
-        }).then(response => response.text())
-          .then(data => {
-              const language = document.getElementById('language').value;
-              const resultWindow = window.open('result.html', '_blank');
-              resultWindow.onload = function() {
-                  resultWindow.document.body.innerHTML = `<h1>Результат (${language === 'en' ? 'Английский' : 'Русский'}):</h1><p>${data}</p>`;
-              };
-          }).catch(error => console.error('Ошибка:', error));
-    });
-</script>
 
 </body>
 </html>
