@@ -73,10 +73,32 @@
 <h1>Извлечение текста из изображения</h1>
 
 <form id="imageForm" action="/a" method="post" enctype="multipart/form-data" target="_blank">
-    <input type="file" name="image" accept="image/*">
+    <input type="file" id="fileInput" name="image" accept="image/*">
     <input type="submit" value="Извлечь текст">
 </form>
 
+<button class="button" id="pasteButton">Вставить из буфера обмена</button>
+
+<script>
+    document.getElementById('pasteButton').addEventListener('click', async () => {
+        try {
+            const clipboardItems = await navigator.clipboard.read();
+            for (const item of clipboardItems) {
+                if (item.types.includes('image/png') || item.types.includes('image/jpeg')) {
+                    const blob = await item.getType(item.types.find(type => type.startsWith('image/')));
+                    const fileInput = document.getElementById('fileInput');
+                    const dataTransfer = new DataTransfer();
+                    dataTransfer.items.add(new File([blob], 'pasted_image.' + blob.type.split('/')[1]));
+                    fileInput.files = dataTransfer.files;
+                    document.getElementById('imageForm').submit();
+                    break;
+                }
+            }
+        } catch (error) {
+            console.error('Failed to read clipboard contents: ', error);
+        }
+    });
+</script>
 
 </body>
 </html>
